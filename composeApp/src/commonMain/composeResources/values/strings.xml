@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common -->
+    <string name="app_name">Versati</string>
+    <string name="back">Back</string>
+    <string name="confirm">Confirm</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="show_advanced_options">Show advanced options</string>
+    <string name="advanced_options">Advanced options</string>
+    <string name="clear_history">Clear history</string>
+    <string name="clearing_the_history">Clearing the history</string>
+    <string name="do_you_really_want_to_clear_the_history">Do you really want to clear the history?</string>
+    <string name="timeout_error">The server is not responding. Try again</string>
+    <string name="no_uploaded_image">There is no uploaded image</string>
+
+    <!-- Auth Feature -->
+    <!-- Sign In Screen -->
+    <string name="authorization_label">Authorization</string>
+    <string name="sign_in">Sign in</string>
+    <string name="incorrect_email_or_password">The email or password is wrong</string>
+    <string name="user_disabled">The user with this email is disabled</string>
+    <string name="user_not_found">The user with this email was not found</string>
+    <string name="don_t_you_have_an_account">Don\'t you have an account?</string>
+    <!-- Register Screen -->
+    <string name="registration_label">Registration</string>
+    <string name="register">Register</string>
+    <string name="email_already_in_use">This email is already in use</string>
+    <string name="weak_password">Password should be at least 6 characters</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <!-- Common -->
+    <string name="account">Account</string>
+    <string name="email">Email</string>
+    <string name="email_hint">Your email</string>
+    <string name="password">Password</string>
+    <string name="password_hint">Your password</string>
+    <string name="enter_email">Enter your email address</string>
+    <string name="invalid_email">Enter a valid email address</string>
+    <string name="enter_password">Enter your password</string>
+    <string name="unknown_error">An unexpected error has occurred</string>
+
+    <!-- Charts Feature -->
+    <!-- Chart Generation Screen -->
+    <string name="charts">Charts</string>
+    <string name="open_charts_history">Open charts history</string>
+    <string name="create_chart">Create chart</string>
+    <string name="x_axis_labels">X-axis labels</string>
+    <string name="x_axis_labels_example">January, February, March, April, May</string>
+    <string name="dataset_with_number">Dataset %1$s</string>
+    <string name="dataset_label">Dataset label</string>
+    <string name="dataset_label_example">Users</string>
+    <string name="dataset">Dataset</string>
+    <string name="dataset_example">120, 60, 50, 180, 120</string>
+    <string name="share_chart">Share chart</string>
+    <string name="uploading_chart_error">An error occurred while uploading the chart image</string>
+    <string name="add_dataset">Add dataset</string>
+    <string name="first_loading_hint">The first loading may be long due to server limitations.\nA repeat request may be required.</string>
+    <!-- Charts History Screen -->
+    <string name="charts_history">Charts history</string>
+    <string name="charts_history_empty">The charts history is empty</string>
+    <string name="chart_description_labels">X-Axis: %1$s</string>
+    <string name="chart_description_datasets">Datasets: %1$s</string>
+    <string name="chart_description_type">Chart type: %1$s</string>
+    <string name="chart_type">Chart type</string>
+
+    <!-- Image Parsing Feature -->
+    <!-- Image Parsing Screen -->
+    <string name="image_parsing">Image parsing</string>
+    <string name="image_url">Image URL</string>
+    <string name="url">URL</string>
+    <string name="open_parsing_history">Open parsing history</string>
+    <string name="parse_image">Parse image</string>
+    <string name="authorization_error">Authorization error on the server (invalid API key)</string>
+    <string name="language">Language</string>
+    <string name="network_error">Network error. Check the connection</string>
+    <string name="parsing_error">Couldn\'t read the text from the image</string>
+    <string name="result">Result:</string>
+    <plurals name="parsed_images">
+        <item quantity="one">Parsed image:</item>
+        <item quantity="other">Parsed images:</item>
+    </plurals>
+    <!-- Parsing History Screen -->
+    <string name="parsing_history">Parsing history</string>
+    <string name="parsing_history_empty">The image parsing history is empty</string>
+
+    <!-- QR-Codes Feature -->
+    <!-- QR-code Generation Screen -->
+    <string name="qr_codes">QR-codes</string>
+    <string name="data">Data</string>
+    <string name="data_hint">URL or plain text</string>
+    <string name="width">Width</string>
+    <string name="height">Height</string>
+    <string name="qr_code_color">QR-code color</string>
+    <string name="background_color">Background color</string>
+    <string name="quiet_zone">Quiet zone</string>
+    <string name="image_format">Image format</string>
+    <string name="uploading_qr_code_error">An error occurred while uploading the QR code</string>
+    <string name="create_qr_code">Create QR-code</string>
+    <string name="open_qr_codes_history">Open QR-codes history</string>
+    <!-- RequestHistory Screen -->
+    <string name="qrcodes_history">QR-codes history</string>
+    <string name="the_history_of_qr_codes_is_empty">The history of QR codes is empty</string>
+
+    <!-- SettingsScreen -->
+    <string name="settings">Settings</string>
+    <string name="log_out">Log out</string>
+    <string name="are_you_sure_you_want_to_log_out_of_your_account">Are you sure you want to log out of your account?</string>
+    <string name="you_are_logged_in">You are logged in. Your email:</string>
+    <string name="you_are_not_logged_in">You are not logged in.</string>
+    <string name="log_in">Log in</string>
+    <string name="permission_has_been_received">Permission has been received</string>
+    <string name="grant_permission">Grant permission</string>
+    <string name="explanation_of_notification_permission">Grant permission for push notifications so that you can receive our push notifications</string>
+    <string name="granting_permission">Granting permission</string>
+    <string name="warning_about_opening_smartphone_settings">The smartphone settings will be opened, where you can manually turn on notifications for our application.</string>
+</resources>

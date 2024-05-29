@@ -15,8 +15,7 @@ compose-plugin = "1.6.10"
 junit = "4.13.2"
 kotlin = "2.0.0"
 orbit = "6.1.0"
-koin = "3.4.0"
-kodein = "7.22.0"
+koin = "3.6.0-wasm-alpha2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -35,7 +34,8 @@ orbit-compose = { group = "org.orbit-mvi", name = "orbit-compose", version.ref =
 orbit-core = { group = "org.orbit-mvi", name = "orbit-core", version.ref = "orbit" }
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
-koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

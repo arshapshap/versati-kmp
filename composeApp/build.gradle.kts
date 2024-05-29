@@ -26,7 +26,7 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
-            implementation(libs.koin.compose)
+            implementation(libs.koin.androidx.compose)
             implementation(libs.orbit.compose)
         }
         commonMain.dependencies {
@@ -39,11 +39,14 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.navigation)
             implementation(libs.koin.core)
+            implementation(libs.koin.compose)
             implementation(libs.orbit.core)
             implementation(projects.shared)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.8.0")
         }
     }
 

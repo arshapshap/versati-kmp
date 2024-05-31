@@ -1,6 +1,6 @@
 package feature.auth.domain.model
 
 data class User(
-    val uid: String,
+    val id: Long,
     val email: String
 )

@@ -1,6 +1,10 @@
 package feature.auth.di
 
-import feature.auth.data.AuthRepositoryImpl
+import com.russhwolf.settings.Settings
+import core.database.dao.UserDao
+import feature.auth.data.helper.AuthSettingsHelper
+import feature.auth.data.mapper.AuthMapper
+import feature.auth.data.repository.AuthRepositoryImpl
 import feature.auth.domain.repository.AuthRepository
 import feature.auth.domain.usecase.GetCurrentUserUseCase
 import feature.auth.domain.usecase.LogOutUseCase
@@ -12,8 +16,10 @@ import org.koin.dsl.module
 
 val authFeatureModule = module {
     // Data
-//    factory<AuthMapper> { AuthMapper() }
-    factory<AuthRepository> { AuthRepositoryImpl() }
+    factory<Settings> { Settings() }
+    factory<AuthSettingsHelper> { AuthSettingsHelper(get<Settings>()) }
+    factory<AuthMapper> { AuthMapper() }
+    factory<AuthRepository> { AuthRepositoryImpl(get<UserDao>(), get<AuthMapper>(), get<AuthSettingsHelper>()) }
 
     // Domain
     factory<GetCurrentUserUseCase> { GetCurrentUserUseCase(get<AuthRepository>()) }

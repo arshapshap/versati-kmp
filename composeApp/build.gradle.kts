@@ -46,12 +46,13 @@ kotlin {
             implementation(libs.room.runtime)
             implementation(libs.sqlite.bundled)
             implementation(libs.sqlite)
+            implementation(libs.multiplatform.settings.no.arg)
             implementation(projects.shared)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.8.0")
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.coroutines.swing)
         }
     }
 
@@ -109,6 +110,7 @@ compose.desktop {
 
 dependencies {
     add("kspAndroid", libs.room.compiler)
+    add("kspDesktop", libs.room.compiler)
 }
 
 room {

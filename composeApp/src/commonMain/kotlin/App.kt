@@ -20,60 +20,53 @@ import core.designsystem.theme.VersatiTheme
 import core.navigation.features.AuthFeature
 import core.navigation.features.SettingsFeature
 import core.navigation.state.AppBarState
-import feature.auth.di.authFeatureModule
 import main.elements.BottomBar
 import main.elements.TopBar
 import main.navigation.MainNavHost
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.koin.compose.KoinApplication
 
 @Composable
 fun App() {
     val navController = rememberNavController()
-    KoinApplication(application = {
-        modules(
-            authFeatureModule
-        )
-    }) {
-        VersatiTheme {
-            Surface(
-                color = MaterialTheme.colorScheme.background
-            ) {
-                val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-                var appBarState by remember { mutableStateOf(AppBarState()) }
-                Scaffold(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .nestedScroll(scrollBehavior.nestedScrollConnection),
-                    topBar = {
-                        TopBar(
-                            scrollBehavior = scrollBehavior,
-                            state = appBarState,
-                            onSettingsClick = {
-                                navController.navigate(SettingsFeature.Settings.destination()) {
-                                    launchSingleTop = true
-                                }
+    VersatiTheme {
+        Surface(
+            color = MaterialTheme.colorScheme.background
+        ) {
+            val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+            var appBarState by remember { mutableStateOf(AppBarState()) }
+            Scaffold(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .nestedScroll(scrollBehavior.nestedScrollConnection),
+                topBar = {
+                    TopBar(
+                        scrollBehavior = scrollBehavior,
+                        state = appBarState,
+                        onSettingsClick = {
+                            navController.navigate(SettingsFeature.Settings.destination()) {
+                                launchSingleTop = true
                             }
-                        )
-                    },
-                    content = {
-                        MainNavHost(
-                            modifier = Modifier.padding(it),
-                            navController = navController,
-                            startDestination = AuthFeature.featureRoute
-                        ) { state ->
-                            if (navController.currentDestination?.route == state.currentRoute)
-                                appBarState = state
                         }
-                    },
-                    bottomBar = {
-                        if (appBarState.showBottomBar)
-                            BottomBar(
-                                navController = navController
-                            )
+                    )
+                },
+                content = {
+                    MainNavHost(
+                        modifier = Modifier.padding(it),
+                        navController = navController,
+                        startDestination = AuthFeature.featureRoute
+                    ) { state ->
+                        if (navController.currentDestination?.route == state.currentRoute)
+                            appBarState = state
                     }
-                )
-            }
+                },
+                bottomBar = {
+                    if (appBarState.showBottomBar) {
+                        BottomBar(
+                            navController = navController
+                        )
+                    }
+                }
+            )
         }
     }
 }

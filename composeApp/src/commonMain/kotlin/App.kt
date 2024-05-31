@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.navigation.compose.rememberNavController
 import core.designsystem.theme.VersatiTheme
-import core.navigation.features.ChartsFeature
+import core.navigation.features.QRCodesFeature
 import core.navigation.features.SettingsFeature
 import core.navigation.state.AppBarState
 import main.elements.BottomBar
@@ -56,7 +56,7 @@ fun App() {
                     MainNavHost(
                         modifier = Modifier.padding(it),
                         navController = navController,
-                        startDestination = ChartsFeature.featureRoute
+                        startDestination = QRCodesFeature.featureRoute
                     ) { state ->
                         if (navController.currentDestination?.route == state.currentRoute)
                             appBarState = state

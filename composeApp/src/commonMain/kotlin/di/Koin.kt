@@ -3,6 +3,7 @@ package di
 import core.database.di.databaseDaoModule
 import feature.auth.di.authFeatureModule
 import feature.charts.di.chartsFeatureModule
+import feature.qrcodes.di.qrCodesFeatureModule
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 
@@ -15,6 +16,7 @@ object Koin {
                 platformModule,
                 databaseDaoModule,
                 authFeatureModule,
+                qrCodesFeatureModule,
                 chartsFeatureModule
             )
         }

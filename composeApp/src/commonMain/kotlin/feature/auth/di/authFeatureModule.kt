@@ -1,7 +1,7 @@
 package feature.auth.di
 
 import com.russhwolf.settings.Settings
-import core.database.dao.UserDao
+import core.database.dao.authfeature.UserDao
 import feature.auth.data.helper.AuthSettingsHelper
 import feature.auth.data.mapper.AuthMapper
 import feature.auth.data.repository.AuthRepositoryImpl

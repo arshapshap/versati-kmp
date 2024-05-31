@@ -11,11 +11,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
+import org.koin.core.parameter.ParametersDefinition
 import org.orbitmvi.orbit.ContainerHost
 
 @Composable
-actual inline fun <reified T : ViewModel> getViewModel(): T {
-    return koinInject<T>()
+actual inline fun <reified T : ViewModel> getViewModel(noinline parameters: ParametersDefinition?): T {
+    return koinInject<T>(parameters = parameters)
 }
 
 @Composable

@@ -1,6 +1,6 @@
 package feature.auth.data.mapper
 
-import core.database.entity.UserEntity
+import core.database.entity.authfeature.UserEntity
 import feature.auth.domain.model.User
 
 class AuthMapper {

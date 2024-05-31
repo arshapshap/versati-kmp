@@ -1,6 +1,6 @@
 package feature.auth.data.repository
 
-import core.database.dao.UserDao
+import core.database.dao.authfeature.UserDao
 import core.utils.encrypt
 import feature.auth.data.helper.AuthSettingsHelper
 import feature.auth.data.mapper.AuthMapper

@@ -1,6 +1,6 @@
-package feature.charts.repository
+package feature.charts.domain.repository
 
-import feature.charts.model.ChartInfo
+import feature.charts.domain.model.ChartInfo
 
 interface ChartsRepository {
 

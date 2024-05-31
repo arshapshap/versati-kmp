@@ -1,7 +1,7 @@
-package feature.charts.usecase
+package feature.charts.domain.usecase
 
-import feature.charts.model.ChartInfo
-import feature.charts.repository.ChartsRepository
+import feature.charts.domain.model.ChartInfo
+import feature.charts.domain.repository.ChartsRepository
 
 class CreateChartUseCase(
     private val repository: ChartsRepository

@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import core.navigation.state.AppBarState
 import feature.auth.presentation.authFeatureGraph
+import feature.charts.presentation.chartsFeatureGraph
 
 @Composable
 internal fun MainNavHost(
@@ -20,7 +21,7 @@ internal fun MainNavHost(
         startDestination = startDestination
     ) {
         authFeatureGraph(navController, appBarConfigure)
-//        chartsFeatureGraph(navController, appBarConfigure)
+        chartsFeatureGraph(navController, appBarConfigure)
 //        imageParsingFeatureGraph(navController, appBarConfigure)
 //        qrCodesFeatureGraph(navController, appBarConfigure)
 //        settingsFeatureGraph(navController, appBarConfigure)

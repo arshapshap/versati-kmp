@@ -1,4 +1,4 @@
-package feature.charts.model
+package feature.charts.domain.model
 
 data class ChartInfo(
     val id: Long,

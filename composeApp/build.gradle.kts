@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.room)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -47,11 +48,13 @@ kotlin {
             implementation(libs.sqlite.bundled)
             implementation(libs.sqlite)
             implementation(libs.multiplatform.settings.no.arg)
+            implementation(libs.libres.compose)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kotlinx.coroutines.core)
             implementation(projects.shared)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
-            implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.coroutines.swing)
         }
     }

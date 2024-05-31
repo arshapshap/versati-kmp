@@ -5,13 +5,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.lifecycle.ViewModel
 import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.ParametersDefinition
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.compose.collectAsState as collectOrbitVMAsState
 import org.orbitmvi.orbit.compose.collectSideEffect as collectOrbitSideEffect
 
 @Composable
-actual inline fun <reified T : ViewModel> getViewModel(): T {
-    return koinViewModel<T>()
+actual inline fun <reified T : ViewModel> getViewModel(noinline parameters: ParametersDefinition?): T {
+    return koinViewModel<T>(parameters = parameters)
 }
 
 @SuppressLint("ComposableNaming")

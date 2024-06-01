@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import core.navigation.state.AppBarState
 import feature.auth.presentation.authFeatureGraph
 import feature.charts.presentation.chartsFeatureGraph
+import feature.imageparsing.presentation.imageParsingFeatureGraph
 import feature.qrcodes.presentation.qrCodesFeatureGraph
 
 @Composable
@@ -23,7 +24,7 @@ internal fun MainNavHost(
     ) {
         authFeatureGraph(navController, appBarConfigure)
         chartsFeatureGraph(navController, appBarConfigure)
-//        imageParsingFeatureGraph(navController, appBarConfigure)
+        imageParsingFeatureGraph(navController, appBarConfigure)
         qrCodesFeatureGraph(navController, appBarConfigure)
 //        settingsFeatureGraph(navController, appBarConfigure)
     }

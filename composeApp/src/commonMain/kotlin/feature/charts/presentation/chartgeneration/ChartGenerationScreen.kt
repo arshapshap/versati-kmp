@@ -34,6 +34,7 @@ internal object ChartGenerationScreen {
         val state by viewModel.collectAsState()
         viewModel.collectSideEffect { sideEffect ->
             when (sideEffect) {
+                // TODO: добавить шэринг ?
 //                is ChartGenerationSideEffect.ShareChart ->
 //                    shareQRCode(
 //                        context = context,
@@ -43,6 +44,7 @@ internal object ChartGenerationScreen {
                 ChartGenerationSideEffect.NavigateToChartsHistory ->
                     navController.navigate(ChartsFeature.ChartsHistory.destination())
 
+                // TODO: показать ошибку ?
 //                ChartGenerationSideEffect.TimeoutError -> context.showToast(Res.string.timeout_error)
 
                 else -> { }

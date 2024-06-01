@@ -33,7 +33,6 @@ import feature.qrcodes.presentation.qrcodegeneration.elements.DataInput
 import feature.qrcodes.presentation.qrcodegeneration.elements.FormatInput
 import feature.qrcodes.presentation.qrcodegeneration.elements.QuietZoneInput
 import feature.qrcodes.presentation.qrcodegeneration.elements.SizeInput
-import io.github.skeptick.libres.images.Image
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import versati.composeapp.generated.resources.Res
@@ -61,7 +60,7 @@ fun QRCodeGenerationContent(
     onFormatChange: (ImageFormat) -> Unit = { },
     onCreateClick: () -> Unit = { },
     onShareClick: () -> Unit = { },
-    onImageLoadingSuccess: (Image?) -> Unit = { },
+    onImageLoadingSuccess: () -> Unit = { },
     onImageLoadingError: () -> Unit = { }
 ) {
     Column(
@@ -120,7 +119,7 @@ fun QRCodeGenerationContent(
                 textStyle = MaterialTheme.typography.headlineSmall,
                 textFontWeight = FontWeight.Bold
             )
-            if (state.success) {
+            if (state.success && false) { // TODO: добавить шэринг ?
                 Spacer(modifier = Modifier.padding(4.dp))
                 Button(
                     onClick = onShareClick,

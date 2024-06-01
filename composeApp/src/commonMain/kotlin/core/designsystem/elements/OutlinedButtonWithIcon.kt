@@ -54,7 +54,7 @@ fun OutlinedButtonWithIcon(
 private fun Preview() {
     OutlinedButtonWithIcon(
         modifier = Modifier.fillMaxWidth(),
-        onClick = { /*TODO*/ },
+        onClick = { },
         text = "Button",
         painter = rememberVectorPainter(Icons.AutoMirrored.Filled.ArrowForward)
     )

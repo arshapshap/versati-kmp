@@ -9,7 +9,6 @@ import feature.charts.presentation.chartgeneration.contract.ChartGenerationSideE
 import feature.charts.presentation.chartgeneration.contract.ChartGenerationState
 import feature.charts.presentation.chartgeneration.contract.DatasetState
 import feature.charts.presentation.chartgeneration.mapper.ChartGenerationStateMapper
-import io.github.skeptick.libres.images.Image
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.annotation.OrbitExperimental
 import org.orbitmvi.orbit.container
@@ -49,17 +48,15 @@ internal class ChartGenerationViewModel(
     }
 
     fun shareChart() = intent {
-        postSideEffect(
-            ChartGenerationSideEffect.ShareChart(state.image)
-        )
+        postSideEffect(ChartGenerationSideEffect.ShareChart)
     }
 
     fun navigateToChartsHistory() = intent {
         postSideEffect(ChartGenerationSideEffect.NavigateToChartsHistory)
     }
 
-    fun onImageLoadingSuccess(image: Image?) = intent {
-        reduce { state.copy(success = true, loading = false, image = image) }
+    fun onImageLoadingSuccess() = intent {
+        reduce { state.copy(success = true, loading = false) }
     }
 
     fun onImageLoadingError() = intent {
@@ -136,7 +133,7 @@ internal class ChartGenerationViewModel(
 
     private suspend fun IntentContext.retryLoading() {
         val imageUrl = state.chartImageUrl
-        reduce { state.copy(chartImageUrl = "", image = null) }
+        reduce { state.copy(chartImageUrl = "") }
         Thread.sleep(1000)
         reduce {
             state.copy(
@@ -148,7 +145,7 @@ internal class ChartGenerationViewModel(
     }
 
     private suspend fun IntentContext.loadChart() {
-        reduce { state.copy(chartImageUrl = "", image = null, success = false) }
+        reduce { state.copy(chartImageUrl = "", success = false) }
         val result = createChartUseCase(mapper.fromState(state))
         reduce {
             state.copy(

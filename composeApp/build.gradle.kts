@@ -48,13 +48,15 @@ kotlin {
             implementation(libs.sqlite.bundled)
             implementation(libs.sqlite)
             implementation(libs.multiplatform.settings.no.arg)
-            implementation(libs.libres.compose)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.coil)
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.ktor)
             implementation(projects.shared)
         }
         desktopMain.dependencies {

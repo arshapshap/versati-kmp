@@ -5,43 +5,39 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import io.github.skeptick.libres.images.Image
+import coil3.compose.AsyncImagePainter
+import coil3.compose.SubcomposeAsyncImage
+import coil3.compose.SubcomposeAsyncImageContent
 
 @Composable
 fun ImageWithLoading(
     modifier: Modifier,
     imageUrl: String,
-    onSuccess: (Image?) -> Unit,
+    onSuccess: () -> Unit,
     onError: () -> Unit,
     placeholderIcon: @Composable () -> Unit,
     errorIcon: @Composable () -> Unit,
 ) {
-    // TODO: добавить загрузку картинки
-//    SubcomposeAsyncImage(
-//        model = ImageRequest.Builder(LocalContext.current)
-//            .data(imageUrl)
-//            .build(),
-//        contentDescription = null,
-//        modifier = modifier
-//    ) {
-//        when {
-//            imageUrl.isEmpty() -> placeholderIcon.invoke()
-//            painter.state is AsyncImagePainter.State.Loading -> LoadingIndicator()
-//            painter.state is AsyncImagePainter.State.Error -> {
-//                onError()
-//                errorIcon.invoke()
-//            }
-//
-//            painter.state is AsyncImagePainter.State.Success -> {
-//                onSuccess(painter.state.getBitmap())
-//                SubcomposeAsyncImageContent()
-//            }
-//        }
-//    }
-}
+    SubcomposeAsyncImage(
+        model = imageUrl,
+        contentDescription = null,
+        modifier = modifier
+    ) {
+        when {
+            imageUrl.isEmpty() -> placeholderIcon.invoke()
+            painter.state is AsyncImagePainter.State.Loading -> LoadingIndicator()
+            painter.state is AsyncImagePainter.State.Error -> {
+                onError()
+                errorIcon.invoke()
+            }
 
-//private fun AsyncImagePainter.State.getBitmap() =
-//    (this as AsyncImagePainter.State.Success).result.drawable.toBitmapOrNull()
+            painter.state is AsyncImagePainter.State.Success -> {
+                onSuccess()
+                SubcomposeAsyncImageContent()
+            }
+        }
+    }
+}
 
 @Composable
 private fun LoadingIndicator() {

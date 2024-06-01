@@ -1,7 +1,6 @@
 package feature.qrcodes.presentation.qrcodegeneration.contract
 
 import feature.qrcodes.domain.model.ImageFormat
-import io.github.skeptick.libres.images.Image
 
 data class QRCodeGenerationState(
     val data: String = "",
@@ -19,6 +18,5 @@ data class QRCodeGenerationState(
     val qrCodeImageUrl: String = "",
     val loading: Boolean = false,
     val success: Boolean = false,
-    val image: Image? = null,
     val optionsChanged: Boolean = true
 )

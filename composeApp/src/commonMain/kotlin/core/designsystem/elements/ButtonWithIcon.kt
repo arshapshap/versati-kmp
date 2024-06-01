@@ -54,7 +54,7 @@ fun ButtonWithIcon(
 private fun Preview() {
     ButtonWithIcon(
         modifier = Modifier.fillMaxWidth(),
-        onClick = { /*TODO*/ },
+        onClick = { },
         text = "Button",
         painter = rememberVectorPainter(Icons.AutoMirrored.Filled.ArrowForward)
     )

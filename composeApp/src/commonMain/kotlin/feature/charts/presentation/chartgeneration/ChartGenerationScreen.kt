@@ -44,7 +44,7 @@ internal object ChartGenerationScreen {
                 ChartGenerationSideEffect.NavigateToChartsHistory ->
                     navController.navigate(ChartsFeature.ChartsHistory.destination())
 
-                // TODO: показать ошибку ?
+                // TODO: показать Toast с ошибкой
 //                ChartGenerationSideEffect.TimeoutError -> context.showToast(Res.string.timeout_error)
 
                 else -> { }

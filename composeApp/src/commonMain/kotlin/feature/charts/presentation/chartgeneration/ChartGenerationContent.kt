@@ -36,7 +36,6 @@ import feature.charts.presentation.chartgeneration.elements.LabelsInput
 import feature.charts.presentation.chartgeneration.elements.SelectedDataset
 import feature.charts.presentation.chartgeneration.elements.UnselectedDataset
 import feature.charts.presentation.common.ui.ChartImage
-import io.github.skeptick.libres.images.Image
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import versati.composeapp.generated.resources.Res
@@ -56,7 +55,7 @@ fun ChartGenerationContent(
     onDatasetChange: (Int, String) -> Unit = { _, _ -> },
     onCreateClick: () -> Unit = { },
     onShareClick: () -> Unit = { },
-    onImageLoadingSuccess: (Image?) -> Unit = { },
+    onImageLoadingSuccess: () -> Unit = { },
     onImageLoadingError: () -> Unit = { },
 ) {
     Column(
@@ -109,7 +108,7 @@ fun ChartGenerationContent(
                 textStyle = MaterialTheme.typography.headlineSmall,
                 textFontWeight = FontWeight.Bold
             )
-            if (state.success) {
+            if (state.success && false) { // TODO: добавить шэринг ?
                 Spacer(modifier = Modifier.padding(4.dp))
                 Button(
                     onClick = onShareClick,

@@ -35,6 +35,7 @@ internal object QRCodeGenerationScreen {
 
         viewModel.collectSideEffect { sideEffect ->
             when (sideEffect) {
+                // TODO: добавить шэринг ?
 //                is QRCodeGenerationSideEffect.ShareQRCode ->
 //                    shareQRCode(
 //                        context = context,

@@ -55,7 +55,7 @@ fun ButtonWithLoading(
 private fun ButtonWithLoadingPreview() {
     ButtonWithLoading(
         modifier = Modifier.fillMaxWidth(),
-        onClick = { /*TODO*/ },
+        onClick = { },
         text = "Button",
         loading = true
     )

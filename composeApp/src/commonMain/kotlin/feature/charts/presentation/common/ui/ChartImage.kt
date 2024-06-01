@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import core.designsystem.elements.ImageWithLoading
-import io.github.skeptick.libres.images.Image
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import versati.composeapp.generated.resources.Res
@@ -24,7 +23,7 @@ internal fun ChartImage(
     modifier: Modifier,
     imageUrl: String,
     showHint: Boolean = false,
-    onSuccess: (Image?) -> Unit = { },
+    onSuccess: () -> Unit = { },
     onError: () -> Unit = { }
 ) {
     Box(modifier = modifier) {

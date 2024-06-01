@@ -8,7 +8,6 @@ import feature.qrcodes.domain.usecase.CreateQRCodeUseCase
 import feature.qrcodes.domain.usecase.GetQRCodeInfoByIdUseCase
 import feature.qrcodes.presentation.qrcodegeneration.contract.QRCodeGenerationSideEffect
 import feature.qrcodes.presentation.qrcodegeneration.contract.QRCodeGenerationState
-import io.github.skeptick.libres.images.Image
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.annotation.OrbitExperimental
 import org.orbitmvi.orbit.container
@@ -48,15 +47,16 @@ internal class QRCodeGenerationViewModel(
     }
 
     fun shareQRCode() = intent {
-        postSideEffect(QRCodeGenerationSideEffect.ShareQRCode(state.image, state.format))
+        // TODO: добавить шэринг ?
+        postSideEffect(QRCodeGenerationSideEffect.ShareQRCode(state.format))
     }
 
     fun navigateToQRCodesHistory() = intent {
         postSideEffect(QRCodeGenerationSideEffect.NavigateToQRCodesHistory)
     }
 
-    fun onImageLoadingSuccess(image: Image?) = intent {
-        reduce { state.copy(success = true, loading = false, image = image) }
+    fun onImageLoadingSuccess() = intent {
+        reduce { state.copy(success = true, loading = false) }
     }
 
     fun onImageLoadingError() = intent {

@@ -6,7 +6,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import core.designsystem.elements.ImageWithLoading
-import io.github.skeptick.libres.images.Image
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import versati.composeapp.generated.resources.Res
@@ -17,7 +16,7 @@ import versati.composeapp.generated.resources.uploading_qr_code_error
 internal fun QRCodeImage(
     modifier: Modifier,
     imageUrl: String,
-    onSuccess: (Image?) -> Unit = { },
+    onSuccess: () -> Unit = { },
     onError: () -> Unit = { }
 ) {
     ImageWithLoading(

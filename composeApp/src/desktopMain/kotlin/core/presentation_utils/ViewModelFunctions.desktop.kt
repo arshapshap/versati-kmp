@@ -16,6 +16,7 @@ import org.orbitmvi.orbit.ContainerHost
 
 @Composable
 actual inline fun <reified T : ViewModel> getViewModel(noinline parameters: ParametersDefinition?): T {
+    // TODO: сделать, чтобы при переходе между экранами вьюмодель не пересоздавалась
     return koinInject<T>(parameters = parameters)
 }
 

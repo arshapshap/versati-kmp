@@ -12,9 +12,9 @@ internal class QRCodesRepositoryImpl(
     private val mapper: QRCodesMapper,
 ) : QRCodesRepository {
 
-    override suspend fun createQRCodeImageUrl(options: QRCodeInfo): String {
-        val imageUrl = mapper.createImageUrl(options)
-        dao.add(mapper.mapToLocal(options, 0, imageUrl))
+    override suspend fun createQRCodeImageUrl(qrCode: QRCodeInfo): String {
+        val imageUrl = mapper.createImageUrl(qrCode)
+        dao.add(mapper.mapToLocal(qrCode, 0, imageUrl))
         if (dao.getCount() > MAX_HISTORY_SIZE)
             dao.deleteOldest()
         return imageUrl

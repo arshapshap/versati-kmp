@@ -20,13 +20,10 @@ import feature.imageparsing.domain.model.ParsingResult
 import feature.imageparsing.presentation.parsing.contract.ParsingState
 import feature.imageparsing.presentation.parsing.elements.DataInput
 import feature.imageparsing.presentation.parsing.elements.LanguageInput
-import feature.imageparsing.presentation.parsing.elements.ParsedImage
-import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import versati.composeapp.generated.resources.Res
 import versati.composeapp.generated.resources.parse_image
-import versati.composeapp.generated.resources.parsed_images
 import versati.composeapp.generated.resources.result
 
 @Composable
@@ -105,19 +102,20 @@ private fun Result(
                 }
             }
         }
-        Text(
-            text = pluralStringResource(Res.plurals.parsed_images, result.parsedResults.size),
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.SemiBold,
-            modifier = Modifier
-                .padding(top = 16.dp, bottom = 8.dp)
-        )
-        ParsedImage(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp),
-            parsingResult = result
-        )
+        // TODO: отображать пдфку с выделенным текстом
+//        Text(
+//            text = pluralStringResource(Res.plurals.parsed_images, result.parsedResults.size),
+//            style = MaterialTheme.typography.titleLarge,
+//            fontWeight = FontWeight.SemiBold,
+//            modifier = Modifier
+//                .padding(top = 16.dp, bottom = 8.dp)
+//        )
+//        ParsedImage(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(vertical = 8.dp),
+//            parsingResult = result
+//        )
     }
 }
 

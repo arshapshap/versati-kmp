@@ -8,6 +8,7 @@ import feature.qrcodes.domain.usecase.CreateQRCodeUseCase
 import feature.qrcodes.domain.usecase.GetQRCodeInfoByIdUseCase
 import feature.qrcodes.presentation.qrcodegeneration.contract.QRCodeGenerationSideEffect
 import feature.qrcodes.presentation.qrcodegeneration.contract.QRCodeGenerationState
+import feature.qrcodes.utils.toHex
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.annotation.OrbitExperimental
 import org.orbitmvi.orbit.container
@@ -133,10 +134,10 @@ internal class QRCodeGenerationViewModel(
             state.copy(
                 size = validateSize(state.size),
                 showDataFieldError = state.data.isBlank(),
-                qrCodeColorString = state.qrCodeColor?.toHexString()?.padStart(6, '0')
+                qrCodeColorString = state.qrCodeColor?.toHex()
                     ?: state.qrCodeColorString,
                 showColorFieldError = state.qrCodeColor == null,
-                backgroundColorString = state.backgroundColor?.toHexString()?.padStart(6, '0')
+                backgroundColorString = state.backgroundColor?.toHex()
                     ?: state.backgroundColorString,
                 showBackgroundColorFieldError = state.backgroundColor == null,
                 quietZone = validateQuietZone(state.quietZone)

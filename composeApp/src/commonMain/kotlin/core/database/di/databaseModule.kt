@@ -7,7 +7,7 @@ import core.database.dao.imageparsingfeature.ParsingResultDao
 import core.database.dao.qrcodesfeature.QRCodeRequestDao
 import org.koin.dsl.module
 
-val databaseDaoModule = module {
+val databaseModule = module {
     single<UserDao> { get<AppDatabase>().userDao() }
     single<ChartDao> { get<AppDatabase>().chartDao() }
     single<ParsingResultDao> { get<AppDatabase>().parsingResultDao() }

@@ -3,20 +3,20 @@ package feature.qrcodes.data.mapper
 import core.database.entity.qrcodesfeature.QRCodeRequestEntity
 import feature.qrcodes.domain.model.ImageFormat
 import feature.qrcodes.domain.model.QRCodeInfo
+import feature.qrcodes.utils.toHex
 
 // TODO: вынести куда-то в норм место
 private const val GOQR_BASE_URL = "https://api.qrserver.com/v1/"
 
 internal class QRCodesMapper {
 
-    @OptIn(ExperimentalStdlibApi::class)
     fun createImageUrl(options: QRCodeInfo): String = with(options) {
         val url = StringBuilder(GOQR_BASE_URL)
         url.append("create-qr-code/")
         url.append("?data=$data")
         url.append("&size=${size}x${size}")
-        url.append("&color=${color.toHexString().padStart(6, '0')}")
-        url.append("&bgcolor=${backgroundColor.toHexString().padStart(6, '0')}")
+        url.append("&color=${color.toHex()}")
+        url.append("&bgcolor=${backgroundColor.toHex()}")
         url.append("&qzone=$quietZone")
         url.append("&format=${format.name.lowercase()}")
 

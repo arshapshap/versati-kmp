@@ -9,6 +9,7 @@ import feature.auth.presentation.authFeatureGraph
 import feature.charts.presentation.chartsFeatureGraph
 import feature.imageparsing.presentation.imageParsingFeatureGraph
 import feature.qrcodes.presentation.qrCodesFeatureGraph
+import feature.settings.presentation.settingsFeatureGraph
 
 @Composable
 internal fun MainNavHost(
@@ -26,6 +27,6 @@ internal fun MainNavHost(
         chartsFeatureGraph(navController, appBarConfigure)
         imageParsingFeatureGraph(navController, appBarConfigure)
         qrCodesFeatureGraph(navController, appBarConfigure)
-//        settingsFeatureGraph(navController, appBarConfigure)
+        settingsFeatureGraph(navController, appBarConfigure)
     }
 }

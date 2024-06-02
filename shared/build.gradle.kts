@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.room)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -34,6 +35,7 @@ kotlin {
             // put your Multiplatform dependencies here
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.koin.core)
+            implementation(libs.kotlinx.serialization.json)
             implementation(libs.multiplatform.settings.no.arg)
             implementation(libs.orbit.core)
             implementation(libs.room.runtime)

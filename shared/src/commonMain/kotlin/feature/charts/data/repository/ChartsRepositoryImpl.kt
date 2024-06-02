@@ -7,7 +7,7 @@ import feature.charts.domain.repository.ChartsRepository
 
 private const val MAX_HISTORY_SIZE = 20
 
-internal class ChartsRepositoryImpl(
+class ChartsRepositoryImpl(
     private val dao: ChartDao,
     private val mapper: ChartsMapper,
 ) : ChartsRepository {

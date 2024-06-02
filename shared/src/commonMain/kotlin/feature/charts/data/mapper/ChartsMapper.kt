@@ -10,13 +10,14 @@ import feature.charts.data.utils.toJson
 import feature.charts.domain.model.ChartInfo
 import feature.charts.domain.model.ChartType
 import feature.charts.domain.model.Dataset
+import feature.qrcodes.presentation.utils.toHex
 
 // TODO: вынести куда-то в норм место
 private const val QUICKCHART_BASE_URL = "https://quickchart.io/"
 
-internal class ChartsMapper {
+class ChartsMapper {
 
-    fun createImageUrl(chartInfo: ChartInfo): String = with(chartInfo) {
+    fun createImageUrl(chartInfo: ChartInfo): String {
         val url = StringBuilder(QUICKCHART_BASE_URL)
         url.append("chart")
         url.append("?c=${chartInfo.toSerializable().toJson().encodeUrl()}")
@@ -70,10 +71,10 @@ internal class ChartsMapper {
             DatasetSerializable(
                 label = dataset.label,
                 data = dataset.data,
-                borderColor = dataset.borderColor?.let { "#${it.toHexString()}" },
+                borderColor = dataset.borderColor?.let { "#${it.toHex()}" },
                 borderWidth = dataset.borderWidth,
                 fill = dataset.fill,
-                backgroundColor = dataset.backgroundColor?.let { "#${it.toHexString()}" }
+                backgroundColor = dataset.backgroundColor?.let { "#${it.toHex()}" }
             )
         }
     }

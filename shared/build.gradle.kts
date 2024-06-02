@@ -30,9 +30,9 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             // put your Multiplatform dependencies here
+            implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.koin.core)
             implementation(libs.orbit.core)
-            implementation(libs.androidx.lifecycle.viewmodel)
         }
     }
 

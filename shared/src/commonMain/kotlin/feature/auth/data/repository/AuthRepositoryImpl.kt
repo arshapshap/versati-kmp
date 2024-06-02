@@ -1,7 +1,7 @@
 package feature.auth.data.repository
 
 import core.database.dao.authfeature.UserDao
-import core.utils.encrypt
+import core.utils.hash
 import feature.auth.data.helper.AuthSettingsHelper
 import feature.auth.data.mapper.AuthMapper
 import feature.auth.domain.model.RegisterError
@@ -23,7 +23,7 @@ class AuthRepositoryImpl(
                 isSuccessful = false,
                 error = SignInError.WrongPassword
             )
-        if (foundUser.password != password.encrypt()) {
+        if (foundUser.password != password.hash()) {
             return SignInResult(
                 isSuccessful = false,
                 error = SignInError.WrongPassword
@@ -43,7 +43,7 @@ class AuthRepositoryImpl(
                 error = RegisterError.EmailAlreadyInUse
             )
         }
-        val entity = mapper.mapToEntity(email, password.encrypt())
+        val entity = mapper.mapToEntity(email, password.hash())
         val userId = dao.insert(entity)
         authHelper.logIn(userId)
         return RegisterResult(

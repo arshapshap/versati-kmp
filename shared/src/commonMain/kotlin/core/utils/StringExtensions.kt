@@ -2,6 +2,11 @@ package core.utils
 
 import kotlin.text.toRegex
 
+fun String.hash(): String {
+    // TODO: сделать что-то понадёжнее
+    return this.hashCode().toString()
+}
+
 fun String.isEmailValid() = Regex.email.matches(this)
 
 private object Regex {

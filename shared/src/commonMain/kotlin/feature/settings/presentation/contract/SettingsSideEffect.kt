@@ -1,4 +1,4 @@
-package feature.settings.contract
+package feature.settings.presentation.contract
 
 sealed interface SettingsSideEffect {
 

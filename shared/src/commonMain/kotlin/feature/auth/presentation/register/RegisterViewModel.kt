@@ -19,7 +19,7 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
-private typealias IntentContext = SimpleSyntax<RegisterState, RegisterSideEffect>
+private typealias IntentSyntax = SimpleSyntax<RegisterState, RegisterSideEffect>
 private typealias ReduceContext = SimpleContext<RegisterState>
 
 class RegisterViewModel(
@@ -78,7 +78,7 @@ class RegisterViewModel(
         }
     }
 
-    private suspend fun IntentContext.checkIfEmailAndPasswordValid(): Boolean {
+    private suspend fun IntentSyntax.checkIfEmailAndPasswordValid(): Boolean {
         val emailFieldError = state.email.checkEmail()
         val passwordFieldError = state.password.checkPassword()
         if (emailFieldError != null || passwordFieldError != null) {
@@ -94,11 +94,17 @@ class RegisterViewModel(
         return emailFieldError == null && passwordFieldError == null
     }
 
-    private suspend fun IntentContext.handleRegisterError(error: RegisterError) {
+    private suspend fun IntentSyntax.handleRegisterError(error: RegisterError) {
         when (error) {
-            RegisterError.EmailAlreadyInUse -> reduce { getStateWithEmailError(EmailFieldError.EmailAlreadyInUse) }
-            RegisterError.InvalidEmail -> reduce { getStateWithEmailError(EmailFieldError.InvalidEmail) }
-            RegisterError.WeakPassword -> reduce { getStateWithPasswordError(PasswordFieldError.WeakPassword) }
+            RegisterError.EmailAlreadyInUse -> reduce { getStateWithEmailError(
+                EmailFieldError.EmailAlreadyInUse
+            ) }
+            RegisterError.InvalidEmail -> reduce { getStateWithEmailError(
+                EmailFieldError.InvalidEmail
+            ) }
+            RegisterError.WeakPassword -> reduce { getStateWithPasswordError(
+                PasswordFieldError.WeakPassword
+            ) }
             RegisterError.UnknownError -> reduce {
                 getStateWithError(
                     RegisterError.UnknownError,

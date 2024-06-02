@@ -19,9 +19,9 @@ import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 import kotlin.math.max
 
-private typealias IntentContext = SimpleSyntax<ChartGenerationState, ChartGenerationSideEffect>
+private typealias IntentSyntax = SimpleSyntax<ChartGenerationState, ChartGenerationSideEffect>
 
-internal class ChartGenerationViewModel(
+class ChartGenerationViewModel(
     chartInfoId: Long,
     private val createChartUseCase: CreateChartUseCase,
     private val getChartInfoByIdUseCase: GetChartInfoByIdUseCase,
@@ -131,10 +131,10 @@ internal class ChartGenerationViewModel(
         reduce { state.copy(chartType = chartType, optionsChanged = true) }
     }
 
-    private suspend fun IntentContext.retryLoading() {
+    private suspend fun IntentSyntax.retryLoading() {
         val imageUrl = state.chartImageUrl
         reduce { state.copy(chartImageUrl = "") }
-        Thread.sleep(1000)
+        // Thread.sleep(1000) TODO: тут нужно было подождать какое-то время между изменениями стейта
         reduce {
             state.copy(
                 chartImageUrl = imageUrl,
@@ -144,7 +144,7 @@ internal class ChartGenerationViewModel(
         }
     }
 
-    private suspend fun IntentContext.loadChart() {
+    private suspend fun IntentSyntax.loadChart() {
         reduce { state.copy(chartImageUrl = "", success = false) }
         val result = createChartUseCase(mapper.fromState(state))
         reduce {
@@ -165,7 +165,7 @@ internal class ChartGenerationViewModel(
         }
     }
 
-    private suspend fun IntentContext.checkIfOptionsValid(): Boolean {
+    private suspend fun IntentSyntax.checkIfOptionsValid(): Boolean {
         var error = state.labels.isBlank()
         reduce { state.copy(showLabelsInputError = state.labels.isBlank()) }
 

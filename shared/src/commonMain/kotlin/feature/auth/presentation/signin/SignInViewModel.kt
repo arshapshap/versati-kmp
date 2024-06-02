@@ -19,7 +19,7 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
-private typealias IntentContext = SimpleSyntax<SignInState, SignInSideEffect>
+private typealias IntentSyntax = SimpleSyntax<SignInState, SignInSideEffect>
 private typealias ReduceContext = SimpleContext<SignInState>
 
 class SignInViewModel(
@@ -77,7 +77,7 @@ class SignInViewModel(
         }
     }
 
-    private suspend fun IntentContext.checkIfEmailAndPasswordValid(): Boolean {
+    private suspend fun IntentSyntax.checkIfEmailAndPasswordValid(): Boolean {
         val emailFieldError = state.email.checkEmail()
         val passwordFieldError = state.password.checkPassword()
         if (emailFieldError != null || passwordFieldError != null) {
@@ -93,17 +93,17 @@ class SignInViewModel(
         return emailFieldError == null && passwordFieldError == null
     }
 
-    private suspend fun IntentContext.handleSignInError(error: SignInError) {
+    private suspend fun IntentSyntax.handleSignInError(error: SignInError) {
         when (error) {
-            feature.auth.domain.model.SignInError.WrongPassword -> reduce { getStateWithError(error) }
-            feature.auth.domain.model.SignInError.InvalidEmail -> reduce { getStateWithEmailError(
-                feature.auth.presentation.common.contract.EmailFieldError.InvalidEmail
+            SignInError.WrongPassword -> reduce { getStateWithError(error) }
+            SignInError.InvalidEmail -> reduce { getStateWithEmailError(
+                EmailFieldError.InvalidEmail
             ) }
-            feature.auth.domain.model.SignInError.UserDisabled -> reduce { getStateWithError(feature.auth.domain.model.SignInError.UserDisabled) }
-            feature.auth.domain.model.SignInError.UserNotFound -> reduce { getStateWithError(feature.auth.domain.model.SignInError.UserNotFound) }
-            feature.auth.domain.model.SignInError.UnknownError -> reduce {
+            SignInError.UserDisabled -> reduce { getStateWithError(SignInError.UserDisabled) }
+            SignInError.UserNotFound -> reduce { getStateWithError(SignInError.UserNotFound) }
+            SignInError.UnknownError -> reduce {
                 getStateWithError(
-                    feature.auth.domain.model.SignInError.UnknownError,
+                    SignInError.UnknownError,
                     highlightError = false
                 )
             }

@@ -10,7 +10,8 @@ import core.navigation.state.AppBarState
 import core.presentation_utils.collectAsState
 import core.presentation_utils.collectSideEffect
 import core.presentation_utils.getViewModel
-import feature.settings.contract.SettingsSideEffect
+import feature.settings.presentation.SettingsViewModel
+import feature.settings.presentation.contract.SettingsSideEffect
 import org.jetbrains.compose.resources.stringResource
 import versati.composeapp.generated.resources.Res
 import versati.composeapp.generated.resources.settings

@@ -1,32 +1,32 @@
-package feature.qrcodes.presentation.qrcodeshistory
+package feature.imageparsing.presentation.history
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import feature.qrcodes.domain.usecase.ClearHistoryUseCase
-import feature.qrcodes.domain.usecase.GetQRCodesHistoryUseCase
-import feature.qrcodes.presentation.qrcodeshistory.contract.QRCodesHistorySideEffect
-import feature.qrcodes.presentation.qrcodeshistory.contract.QRCodesHistoryState
+import feature.imageparsing.domain.usecase.ClearHistoryUseCase
+import feature.imageparsing.domain.usecase.GetParsingHistoryUseCase
+import feature.imageparsing.presentation.history.contract.ParsingHistorySideEffect
+import feature.imageparsing.presentation.history.contract.ParsingHistoryState
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
-internal class QRCodesHistoryViewModel(
-    private val getQrCodesHistoryUseCase: GetQRCodesHistoryUseCase,
+class ParsingHistoryViewModel(
+    private val getParsingHistoryUseCase: GetParsingHistoryUseCase,
     private val clearHistoryUseCase: ClearHistoryUseCase
-) : ContainerHost<QRCodesHistoryState, QRCodesHistorySideEffect>, ViewModel() {
+) : ContainerHost<ParsingHistoryState, ParsingHistorySideEffect>, ViewModel() {
 
     override val container =
         viewModelScope
-            .container<QRCodesHistoryState, QRCodesHistorySideEffect>(QRCodesHistoryState())
+            .container<ParsingHistoryState, ParsingHistorySideEffect>(ParsingHistoryState())
 
     init {
         loadHistory()
     }
 
-    fun openQRCode(id: Long) = intent {
-        postSideEffect(QRCodesHistorySideEffect.OpenQRCode(id))
+    fun openParsingResult(id: Long) = intent {
+        postSideEffect(ParsingHistorySideEffect.OpenParsingResult(id))
     }
 
     fun clearHistoryUnconfirmed() = intent {
@@ -43,7 +43,7 @@ internal class QRCodesHistoryViewModel(
     }
 
     private fun loadHistory() = intent {
-        val list = getQrCodesHistoryUseCase().asReversed()
+        val list = getParsingHistoryUseCase().asReversed()
         reduce { state.copy(history = list) }
     }
 }

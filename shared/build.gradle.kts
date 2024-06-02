@@ -31,6 +31,8 @@ kotlin {
         commonMain.dependencies {
             // put your Multiplatform dependencies here
             implementation(libs.koin.core)
+            implementation(libs.orbit.core)
+            implementation(libs.androidx.lifecycle.viewmodel)
         }
     }
 

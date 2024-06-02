@@ -15,7 +15,7 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
-internal class ParsingViewModel(
+class ParsingViewModel(
     parsingResultId: Long,
     private val parseImageByUrlUseCase: ParseImageByUrlUseCase,
     private val getParsingResultByIdUseCase: GetParsingResultByIdUseCase

@@ -9,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import feature.auth.domain.model.User
-import feature.settings.contract.SettingsState
+import feature.settings.presentation.contract.SettingsState
 import feature.settings.presentation.settings.elements.AccountInfo
 import org.jetbrains.compose.ui.tooling.preview.Preview
 

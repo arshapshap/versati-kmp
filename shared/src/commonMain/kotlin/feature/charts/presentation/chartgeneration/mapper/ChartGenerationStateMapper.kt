@@ -5,7 +5,7 @@ import feature.charts.domain.model.Dataset
 import feature.charts.presentation.chartgeneration.contract.ChartGenerationState
 import feature.charts.presentation.chartgeneration.contract.DatasetState
 
-internal class ChartGenerationStateMapper {
+class ChartGenerationStateMapper {
 
     fun toState(chartInfo: ChartInfo) = ChartGenerationState(
         labels = chartInfo.xAxisLabels.joinToString(", "),

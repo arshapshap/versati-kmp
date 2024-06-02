@@ -1,32 +1,32 @@
-package feature.imageparsing.presentation.history
+package feature.charts.presentation.chartshistory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import feature.imageparsing.domain.usecase.ClearHistoryUseCase
-import feature.imageparsing.domain.usecase.GetParsingHistoryUseCase
-import feature.imageparsing.presentation.history.contract.ParsingHistorySideEffect
-import feature.imageparsing.presentation.history.contract.ParsingHistoryState
+import feature.charts.domain.usecase.ClearHistoryUseCase
+import feature.charts.domain.usecase.GetChartsHistoryUseCase
+import feature.charts.presentation.chartshistory.contract.ChartsHistorySideEffect
+import feature.charts.presentation.chartshistory.contract.ChartsHistoryState
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
-internal class ParsingHistoryViewModel(
-    private val getParsingHistoryUseCase: GetParsingHistoryUseCase,
+class ChartsHistoryViewModel(
+    private val getChartsHistoryUseCase: GetChartsHistoryUseCase,
     private val clearHistoryUseCase: ClearHistoryUseCase
-) : ContainerHost<ParsingHistoryState, ParsingHistorySideEffect>, ViewModel() {
+) : ContainerHost<ChartsHistoryState, ChartsHistorySideEffect>, ViewModel() {
 
     override val container =
         viewModelScope
-            .container<ParsingHistoryState, ParsingHistorySideEffect>(ParsingHistoryState())
+            .container<ChartsHistoryState, ChartsHistorySideEffect>(ChartsHistoryState())
 
     init {
         loadHistory()
     }
 
-    fun openParsingResult(id: Long) = intent {
-        postSideEffect(ParsingHistorySideEffect.OpenParsingResult(id))
+    fun openChart(id: Long) = intent {
+        postSideEffect(ChartsHistorySideEffect.OpenChart(id))
     }
 
     fun clearHistoryUnconfirmed() = intent {
@@ -43,7 +43,7 @@ internal class ParsingHistoryViewModel(
     }
 
     private fun loadHistory() = intent {
-        val list = getParsingHistoryUseCase().asReversed()
+        val list = getChartsHistoryUseCase().asReversed()
         reduce { state.copy(history = list) }
     }
 }

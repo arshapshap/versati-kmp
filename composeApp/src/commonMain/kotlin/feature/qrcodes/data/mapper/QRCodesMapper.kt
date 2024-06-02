@@ -3,7 +3,7 @@ package feature.qrcodes.data.mapper
 import core.database.entity.qrcodesfeature.QRCodeRequestEntity
 import feature.qrcodes.domain.model.ImageFormat
 import feature.qrcodes.domain.model.QRCodeInfo
-import feature.qrcodes.utils.toHex
+import feature.qrcodes.presentation.utils.toHex
 
 // TODO: вынести куда-то в норм место
 private const val GOQR_BASE_URL = "https://api.qrserver.com/v1/"

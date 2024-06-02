@@ -1,32 +1,32 @@
-package feature.charts.presentation.chartshistory
+package feature.qrcodes.presentation.qrcodeshistory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import feature.charts.domain.usecase.ClearHistoryUseCase
-import feature.charts.domain.usecase.GetChartsHistoryUseCase
-import feature.charts.presentation.chartshistory.contract.ChartsHistorySideEffect
-import feature.charts.presentation.chartshistory.contract.ChartsHistoryState
+import feature.qrcodes.domain.usecase.ClearHistoryUseCase
+import feature.qrcodes.domain.usecase.GetQRCodesHistoryUseCase
+import feature.qrcodes.presentation.qrcodeshistory.contract.QRCodesHistorySideEffect
+import feature.qrcodes.presentation.qrcodeshistory.contract.QRCodesHistoryState
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
-internal class ChartsHistoryViewModel(
-    private val getChartsHistoryUseCase: GetChartsHistoryUseCase,
+class QRCodesHistoryViewModel(
+    private val getQrCodesHistoryUseCase: GetQRCodesHistoryUseCase,
     private val clearHistoryUseCase: ClearHistoryUseCase
-) : ContainerHost<ChartsHistoryState, ChartsHistorySideEffect>, ViewModel() {
+) : ContainerHost<QRCodesHistoryState, QRCodesHistorySideEffect>, ViewModel() {
 
     override val container =
         viewModelScope
-            .container<ChartsHistoryState, ChartsHistorySideEffect>(ChartsHistoryState())
+            .container<QRCodesHistoryState, QRCodesHistorySideEffect>(QRCodesHistoryState())
 
     init {
         loadHistory()
     }
 
-    fun openChart(id: Long) = intent {
-        postSideEffect(ChartsHistorySideEffect.OpenChart(id))
+    fun openQRCode(id: Long) = intent {
+        postSideEffect(QRCodesHistorySideEffect.OpenQRCode(id))
     }
 
     fun clearHistoryUnconfirmed() = intent {
@@ -43,7 +43,7 @@ internal class ChartsHistoryViewModel(
     }
 
     private fun loadHistory() = intent {
-        val list = getChartsHistoryUseCase().asReversed()
+        val list = getQrCodesHistoryUseCase().asReversed()
         reduce { state.copy(history = list) }
     }
 }

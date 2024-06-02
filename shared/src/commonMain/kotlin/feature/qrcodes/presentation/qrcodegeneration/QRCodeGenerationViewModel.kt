@@ -8,7 +8,7 @@ import feature.qrcodes.domain.usecase.CreateQRCodeUseCase
 import feature.qrcodes.domain.usecase.GetQRCodeInfoByIdUseCase
 import feature.qrcodes.presentation.qrcodegeneration.contract.QRCodeGenerationSideEffect
 import feature.qrcodes.presentation.qrcodegeneration.contract.QRCodeGenerationState
-import feature.qrcodes.utils.toHex
+import feature.qrcodes.presentation.utils.toHex
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.annotation.OrbitExperimental
 import org.orbitmvi.orbit.container
@@ -19,9 +19,9 @@ import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 import kotlin.math.min
 
-private typealias IntentContext = SimpleSyntax<QRCodeGenerationState, QRCodeGenerationSideEffect>
+private typealias IntentSyntax = SimpleSyntax<QRCodeGenerationState, QRCodeGenerationSideEffect>
 
-internal class QRCodeGenerationViewModel(
+class QRCodeGenerationViewModel(
     qrCodeInfoId: Long,
     private val createQRCodeUseCase: CreateQRCodeUseCase,
     private val getQRCodeInfoByIdUseCase: GetQRCodeInfoByIdUseCase
@@ -128,8 +128,7 @@ internal class QRCodeGenerationViewModel(
         }
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
-    private suspend fun IntentContext.checkIfOptionsValid(): Boolean {
+    private suspend fun IntentSyntax.checkIfOptionsValid(): Boolean {
         reduce {
             state.copy(
                 size = validateSize(state.size),
@@ -146,7 +145,7 @@ internal class QRCodeGenerationViewModel(
         return !state.showDataFieldError && !state.showColorFieldError && !state.showBackgroundColorFieldError
     }
 
-    private fun IntentContext.getQRCodeOptions() = QRCodeInfo(
+    private fun IntentSyntax.getQRCodeOptions() = QRCodeInfo(
         id = 0,
         data = state.data,
         size = state.size ?: 200,

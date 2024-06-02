@@ -43,7 +43,6 @@ kotlin {
             implementation(libs.androidx.navigation)
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
-            implementation(libs.orbit.core)
             implementation(libs.room.runtime)
             implementation(libs.sqlite.bundled)
             implementation(libs.sqlite)
@@ -57,6 +56,7 @@ kotlin {
             implementation(libs.coil)
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor)
+            implementation(libs.orbit.core)
             implementation(projects.shared)
         }
         desktopMain.dependencies {

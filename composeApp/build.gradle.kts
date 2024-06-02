@@ -38,7 +38,7 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.runtime)
             implementation(compose.ui)
-            implementation(libs.androidx.navigation)
+            implementation(libs.androidx.navigation.compose)
             implementation(libs.coil)
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor)

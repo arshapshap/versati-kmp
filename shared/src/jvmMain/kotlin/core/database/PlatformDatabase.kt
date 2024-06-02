@@ -20,7 +20,6 @@ object PlatformDatabase {
             .setQueryCoroutineContext(Dispatchers.IO)
     }
 
-
     fun getDatabase(): AppDatabase {
         return getDatabaseBuilder().build()
     }

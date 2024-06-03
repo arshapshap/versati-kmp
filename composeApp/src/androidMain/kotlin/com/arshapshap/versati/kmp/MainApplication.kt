@@ -1,6 +1,8 @@
 package com.arshapshap.versati.kmp
 
 import android.app.Application
+import com.google.firebase.FirebaseApp
+import core.binding.AndroidFirebaseAnalytics
 import core.binding.AndroidFirebaseCrashlytics
 import core.firebase.AndroidFirebaseSDK
 import di.Koin
@@ -10,8 +12,10 @@ class MainApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        FirebaseApp.initializeApp(this)
         AndroidFirebaseSDK.init(
-            crashlyticsBinding = AndroidFirebaseCrashlytics()
+            crashlytics = AndroidFirebaseCrashlytics(),
+            analytics = AndroidFirebaseAnalytics()
         )
         Koin.initKoin {
             androidContext(applicationContext)

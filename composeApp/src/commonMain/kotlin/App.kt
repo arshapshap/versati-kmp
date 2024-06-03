@@ -17,7 +17,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import core.binding.FirebaseAnalytics
 import core.designsystem.theme.VersatiTheme
 import core.navigation.features.QRCodesFeature
 import core.navigation.features.SettingsFeature
@@ -27,10 +29,12 @@ import main.elements.BottomBar
 import main.elements.TopBar
 import main.navigation.MainNavHost
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.koinInject
 
 @Composable
 fun App() {
     val navController = rememberNavController()
+    setupNavigationListener(navController)
     VersatiTheme {
         Surface(
             color = MaterialTheme.colorScheme.background
@@ -79,6 +83,18 @@ fun App() {
                     }
                 }
             )
+        }
+    }
+}
+
+@Composable
+private fun setupNavigationListener(
+    navController: NavHostController
+) {
+    val analytics = koinInject<FirebaseAnalytics>()
+    navController.addOnDestinationChangedListener { _, destination, _ ->
+        destination.route?.let { route ->
+            analytics.recordLaunchScreen(route.takeWhile { it != '?' })
         }
     }
 }

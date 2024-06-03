@@ -3,7 +3,7 @@ package core.firebase
 import core.binding.FirebaseAnalytics
 import core.binding.FirebaseCrashlytics
 
-object AndroidFirebaseSDK {
+object DesktopFirebaseSDK {
 
     private var _firebaseCrashlytics: FirebaseCrashlytics? = null
     val firebaseCrashlytics: FirebaseCrashlytics

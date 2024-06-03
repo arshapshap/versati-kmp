@@ -30,6 +30,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(project.dependencies.platform(libs.firebase.bom))
             implementation(libs.firebase.crashlytics)
+            implementation(libs.firebase.analytics)
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
             implementation(libs.orbit.compose)

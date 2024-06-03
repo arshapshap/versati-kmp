@@ -1,6 +1,7 @@
 package di
 
 import core.database.di.databaseModule
+import core.network.networkModule
 import feature.auth.di.authFeatureModule
 import feature.charts.di.chartsFeatureModule
 import feature.imageparsing.di.imageParsingFeatureModule
@@ -17,6 +18,7 @@ object Koin {
             modules(
                 platformModule,
                 databaseModule,
+                networkModule,
                 authFeatureModule,
                 qrCodesFeatureModule,
                 imageParsingFeatureModule,

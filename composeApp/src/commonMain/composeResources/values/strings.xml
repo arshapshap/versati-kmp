@@ -20,7 +20,7 @@
     <string name="incorrect_email_or_password">The email or password is wrong</string>
     <string name="user_disabled">The user with this email is disabled</string>
     <string name="user_not_found">The user with this email was not found</string>
-    <string name="don_t_you_have_an_account">Don\'t you have an account?</string>
+    <string name="don_t_you_have_an_account">Don't you have an account?</string>
     <!-- Register Screen -->
     <string name="registration_label">Registration</string>
     <string name="register">Register</string>
@@ -72,7 +72,7 @@
     <string name="authorization_error">Authorization error on the server (invalid API key)</string>
     <string name="language">Language</string>
     <string name="network_error">Network error. Check the connection</string>
-    <string name="parsing_error">Couldn\'t read the text from the image</string>
+    <string name="parsing_error">Couldn't read the text from the image</string>
     <string name="result">Result:</string>
     <plurals name="parsed_images">
         <item quantity="one">Parsed image:</item>

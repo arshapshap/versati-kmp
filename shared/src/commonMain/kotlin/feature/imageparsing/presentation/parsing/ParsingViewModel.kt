@@ -2,11 +2,14 @@ package feature.imageparsing.presentation.parsing
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import core.network.exception.AuthorizationException
+import core.network.exception.NetworkException
 import feature.imageparsing.domain.model.Language
 import feature.imageparsing.domain.usecase.GetParsingResultByIdUseCase
 import feature.imageparsing.domain.usecase.ParseImageByUrlUseCase
 import feature.imageparsing.presentation.parsing.contract.ParsingSideEffect
 import feature.imageparsing.presentation.parsing.contract.ParsingState
+import io.ktor.client.network.sockets.SocketTimeoutException
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.annotation.OrbitExperimental
 import org.orbitmvi.orbit.container
@@ -48,10 +51,9 @@ class ParsingViewModel(
         } catch (e: Exception) {
             reduce { state.copy(loading = false) }
             when (e) {
-                // TODO: отловить ошибки
-//                is HttpException -> handleHttpException(e)
-//                is SocketTimeoutException -> postSideEffect(ParsingSideEffect.TimeoutError)
-//                is UnknownHostException -> postSideEffect(ParsingSideEffect.NetworkError)
+                is NetworkException -> postSideEffect(ParsingSideEffect.NetworkError)
+                is SocketTimeoutException -> postSideEffect(ParsingSideEffect.TimeoutError)
+                is AuthorizationException -> postSideEffect(ParsingSideEffect.AuthorizationError)
             }
         }
     }
@@ -69,12 +71,6 @@ class ParsingViewModel(
     fun navigateToParsingHistory() = intent {
         postSideEffect(ParsingSideEffect.NavigateToHistory)
     }
-
-//    private suspend fun IntentContext.handleHttpException(e: HttpException) {
-//        when (e.code()) {
-//            403 -> postSideEffect(ParsingSideEffect.AuthorizationError)
-//        }
-//    }
 
     private fun loadParsingResult(id: Long) = intent {
         val parsingResult = getParsingResultByIdUseCase(id) ?: return@intent

@@ -48,7 +48,6 @@ class QRCodeGenerationViewModel(
     }
 
     fun shareQRCode() = intent {
-        // TODO: добавить шэринг ?
         postSideEffect(QRCodeGenerationSideEffect.ShareQRCode(state.format))
     }
 

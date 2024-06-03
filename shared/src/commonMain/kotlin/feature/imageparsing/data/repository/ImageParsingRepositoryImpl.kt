@@ -7,7 +7,6 @@ import feature.imageparsing.domain.model.Language
 import feature.imageparsing.domain.model.ParsingResult
 import feature.imageparsing.domain.repository.ImageParsingRepository
 
-// TODO: перенести в норм место
 private const val OCR_API_KEY = "K87297716488957"
 private const val MAX_HISTORY_SIZE = 20
 

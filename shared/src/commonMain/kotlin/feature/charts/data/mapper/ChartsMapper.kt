@@ -12,7 +12,6 @@ import feature.charts.domain.model.ChartType
 import feature.charts.domain.model.Dataset
 import feature.qrcodes.presentation.utils.toHex
 
-// TODO: вынести куда-то в норм место
 private const val QUICKCHART_BASE_URL = "https://quickchart.io/"
 
 class ChartsMapper {

@@ -14,6 +14,7 @@ import core.presentation_utils.collectAsState
 import core.presentation_utils.collectSideEffect
 import core.presentation_utils.getViewModel
 import feature.charts.presentation.chartshistory.contract.ChartsHistorySideEffect
+import main.ScaffoldOptions
 import org.jetbrains.compose.resources.stringResource
 import versati.composeapp.generated.resources.Res
 import versati.composeapp.generated.resources.charts_history
@@ -25,7 +26,7 @@ internal object ChartsHistoryScreen {
     @Composable
     fun Content(
         navController: NavHostController,
-        appBarConfigure: (AppBarState) -> Unit
+        scaffoldOptions: ScaffoldOptions
     ) {
         val viewModel = getViewModel<ChartsHistoryViewModel>()
         val state by viewModel.collectAsState()
@@ -42,7 +43,7 @@ internal object ChartsHistoryScreen {
             onClearClick = viewModel::clearHistoryUnconfirmed
         )
         SideEffect {
-            appBarConfigure(appBarState)
+            scaffoldOptions.appBarConfigure(appBarState)
         }
         ChartsHistoryContent(
             state = state,

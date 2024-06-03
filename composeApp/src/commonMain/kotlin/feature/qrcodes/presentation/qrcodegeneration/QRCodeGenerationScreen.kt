@@ -12,6 +12,7 @@ import core.presentation_utils.collectAsState
 import core.presentation_utils.collectSideEffect
 import core.presentation_utils.getViewModel
 import feature.qrcodes.presentation.qrcodegeneration.contract.QRCodeGenerationSideEffect
+import main.ScaffoldOptions
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.core.parameter.parametersOf
@@ -27,7 +28,7 @@ internal object QRCodeGenerationScreen {
     fun Content(
         navController: NavHostController,
         id: Long?,
-        appBarConfigure: (AppBarState) -> Unit
+        scaffoldOptions: ScaffoldOptions
     ) {
         val viewModel =
             getViewModel<QRCodeGenerationViewModel>(parameters = { parametersOf(id ?: 0) })
@@ -35,24 +36,23 @@ internal object QRCodeGenerationScreen {
 
         viewModel.collectSideEffect { sideEffect ->
             when (sideEffect) {
-                // TODO: добавить шэринг ?
-//                is QRCodeGenerationSideEffect.ShareQRCode ->
+                is QRCodeGenerationSideEffect.ShareQRCode -> {
+                    // TODO: добавить шэринг ?
 //                    shareQRCode(
 //                        context = context,
 //                        bitmap = sideEffect.bitmap,
 //                        format = sideEffect.imageFormat.name.lowercase()
 //                    )
+                }
 
                 QRCodeGenerationSideEffect.NavigateToQRCodesHistory ->
                     navController.navigate(QRCodesFeature.QRCodesHistory.destination())
-
-                else -> { }
             }
         }
 
         val appBarState = getAppBarState(viewModel::navigateToQRCodesHistory)
         SideEffect {
-            appBarConfigure(appBarState)
+            scaffoldOptions.appBarConfigure(appBarState)
         }
         QRCodeGenerationContent(
             state = state,

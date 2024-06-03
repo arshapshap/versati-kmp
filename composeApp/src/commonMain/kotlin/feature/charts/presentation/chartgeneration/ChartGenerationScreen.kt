@@ -12,6 +12,7 @@ import core.presentation_utils.collectAsState
 import core.presentation_utils.collectSideEffect
 import core.presentation_utils.getViewModel
 import feature.charts.presentation.chartgeneration.contract.ChartGenerationSideEffect
+import main.ScaffoldOptions
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.core.parameter.parametersOf
@@ -19,6 +20,7 @@ import versati.composeapp.generated.resources.Res
 import versati.composeapp.generated.resources.charts
 import versati.composeapp.generated.resources.ic_history
 import versati.composeapp.generated.resources.open_charts_history
+import versati.composeapp.generated.resources.timeout_error
 
 
 internal object ChartGenerationScreen {
@@ -27,33 +29,34 @@ internal object ChartGenerationScreen {
     fun Content(
         navController: NavHostController,
         id: Long?,
-        appBarConfigure: (AppBarState) -> Unit
+        scaffoldOptions: ScaffoldOptions
     ) {
         val viewModel =
             getViewModel<ChartGenerationViewModel>(parameters = { parametersOf(id ?: 0) })
         val state by viewModel.collectAsState()
+
+        val timeoutErrorString = stringResource(Res.string.timeout_error)
         viewModel.collectSideEffect { sideEffect ->
             when (sideEffect) {
-                // TODO: добавить шэринг ?
-//                is ChartGenerationSideEffect.ShareChart ->
+                is ChartGenerationSideEffect.ShareChart -> {
+                    // TODO: добавить шэринг ?
 //                    shareQRCode(
 //                        context = context,
 //                        bitmap = sideEffect.bitmap
 //                    )
-
-                ChartGenerationSideEffect.NavigateToChartsHistory ->
+                }
+                ChartGenerationSideEffect.NavigateToChartsHistory -> {
                     navController.navigate(ChartsFeature.ChartsHistory.destination())
-
-                // TODO: показать Toast с ошибкой
-//                ChartGenerationSideEffect.TimeoutError -> context.showToast(Res.string.timeout_error)
-
-                else -> { }
+                }
+                ChartGenerationSideEffect.TimeoutError -> {
+                    scaffoldOptions.snackbarHostState.showSnackbar(timeoutErrorString)
+                }
             }
         }
 
         val appBarState = getAppBarState(viewModel::navigateToChartsHistory)
         SideEffect {
-            appBarConfigure(appBarState)
+            scaffoldOptions.appBarConfigure(appBarState)
         }
         ChartGenerationContent(
             state = state,

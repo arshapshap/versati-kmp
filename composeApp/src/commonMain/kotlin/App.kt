@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -20,6 +22,7 @@ import core.designsystem.theme.VersatiTheme
 import core.navigation.features.QRCodesFeature
 import core.navigation.features.SettingsFeature
 import core.navigation.state.AppBarState
+import main.ScaffoldOptions
 import main.elements.BottomBar
 import main.elements.TopBar
 import main.navigation.MainNavHost
@@ -34,10 +37,12 @@ fun App() {
         ) {
             val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
             var appBarState by remember { mutableStateOf(AppBarState()) }
+            val snackbarHostState = remember { SnackbarHostState() }
             Scaffold(
                 modifier = Modifier
                     .fillMaxSize()
                     .nestedScroll(scrollBehavior.nestedScrollConnection),
+                snackbarHost = { SnackbarHost(snackbarHostState) },
                 topBar = {
                     TopBar(
                         scrollBehavior = scrollBehavior,
@@ -56,11 +61,15 @@ fun App() {
                     MainNavHost(
                         modifier = Modifier.padding(it),
                         navController = navController,
-                        startDestination = QRCodesFeature.featureRoute
-                    ) { state ->
-                        if (navController.currentDestination?.route == state.currentRoute)
-                            appBarState = state
-                    }
+                        startDestination = QRCodesFeature.featureRoute,
+                        scaffoldOptions = ScaffoldOptions(
+                            snackbarHostState = snackbarHostState,
+                            appBarConfigure = { state ->
+                                if (navController.currentDestination?.route == state.currentRoute)
+                                    appBarState = state
+                            }
+                        )
+                    )
                 },
                 bottomBar = {
                     if (appBarState.showBottomBar) {
@@ -74,6 +83,7 @@ fun App() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 private fun Preview() {

@@ -9,6 +9,7 @@ import feature.charts.presentation.chartgeneration.contract.ChartGenerationSideE
 import feature.charts.presentation.chartgeneration.contract.ChartGenerationState
 import feature.charts.presentation.chartgeneration.contract.DatasetState
 import feature.charts.presentation.chartgeneration.mapper.ChartGenerationStateMapper
+import kotlinx.coroutines.delay
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.annotation.OrbitExperimental
 import org.orbitmvi.orbit.container
@@ -134,7 +135,7 @@ class ChartGenerationViewModel(
     private suspend fun IntentSyntax.retryLoading() {
         val imageUrl = state.chartImageUrl
         reduce { state.copy(chartImageUrl = "") }
-        // Thread.sleep(1000) TODO: тут нужно было подождать какое-то время между изменениями стейта
+        delay(1000)
         reduce {
             state.copy(
                 chartImageUrl = imageUrl,

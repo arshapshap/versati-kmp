@@ -5,13 +5,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import core.navigation.features.QRCodesFeature
-import core.navigation.state.AppBarState
 import feature.qrcodes.presentation.qrcodegeneration.QRCodeGenerationScreen
 import feature.qrcodes.presentation.qrcodeshistory.QRCodesHistoryScreen
+import main.ScaffoldOptions
 
 fun NavGraphBuilder.qrCodesFeatureGraph(
     navController: NavHostController,
-    appBarConfigure: (AppBarState) -> Unit
+    scaffoldOptions: ScaffoldOptions
 ) {
     navigation(
         route = QRCodesFeature.featureRoute,
@@ -24,7 +24,7 @@ fun NavGraphBuilder.qrCodesFeatureGraph(
             QRCodeGenerationScreen.Content(
                 navController = navController,
                 id = it.arguments?.getLong(QRCodesFeature.QRCodeGeneration.idArgument),
-                appBarConfigure = appBarConfigure
+                scaffoldOptions = scaffoldOptions
             )
         }
         composable(
@@ -32,7 +32,7 @@ fun NavGraphBuilder.qrCodesFeatureGraph(
         ) {
             QRCodesHistoryScreen.Content(
                 navController = navController,
-                appBarConfigure = appBarConfigure
+                scaffoldOptions = scaffoldOptions
             )
         }
     }

@@ -5,13 +5,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import core.navigation.features.ChartsFeature
-import core.navigation.state.AppBarState
 import feature.charts.presentation.chartgeneration.ChartGenerationScreen
 import feature.charts.presentation.chartshistory.ChartsHistoryScreen
+import main.ScaffoldOptions
 
 fun NavGraphBuilder.chartsFeatureGraph(
     navController: NavHostController,
-    appBarConfigure: (AppBarState) -> Unit
+    scaffoldOptions: ScaffoldOptions
 ) {
     navigation(
         route = ChartsFeature.featureRoute,
@@ -24,7 +24,7 @@ fun NavGraphBuilder.chartsFeatureGraph(
             ChartGenerationScreen.Content(
                 navController = navController,
                 id = it.arguments?.getLong(ChartsFeature.ChartGeneration.idArgument),
-                appBarConfigure = appBarConfigure
+                scaffoldOptions = scaffoldOptions
             )
         }
         composable(
@@ -32,7 +32,7 @@ fun NavGraphBuilder.chartsFeatureGraph(
         ) {
             ChartsHistoryScreen.Content(
                 navController = navController,
-                appBarConfigure = appBarConfigure
+                scaffoldOptions = scaffoldOptions
             )
         }
     }

@@ -5,13 +5,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import core.navigation.features.AuthFeature
-import core.navigation.state.AppBarState
 import feature.auth.presentation.register.RegisterScreen
 import feature.auth.presentation.signin.SignInScreen
+import main.ScaffoldOptions
 
 fun NavGraphBuilder.authFeatureGraph(
     navController: NavHostController,
-    appBarConfigure: (AppBarState) -> Unit
+    scaffoldOptions: ScaffoldOptions
 ) {
     navigation(
         route = AuthFeature.featureRoute,
@@ -22,7 +22,7 @@ fun NavGraphBuilder.authFeatureGraph(
         ) {
             RegisterScreen.Content(
                 navController = navController,
-                appBarConfigure = appBarConfigure
+                scaffoldOptions = scaffoldOptions
             )
         }
         composable(
@@ -30,7 +30,7 @@ fun NavGraphBuilder.authFeatureGraph(
         ) {
             SignInScreen.Content(
                 navController = navController,
-                appBarConfigure = appBarConfigure
+                scaffoldOptions = scaffoldOptions
             )
         }
     }

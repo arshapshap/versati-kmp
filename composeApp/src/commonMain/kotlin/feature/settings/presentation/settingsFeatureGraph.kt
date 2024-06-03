@@ -5,12 +5,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import core.navigation.features.SettingsFeature
-import core.navigation.state.AppBarState
 import feature.settings.presentation.settings.SettingsScreen
+import main.ScaffoldOptions
 
 fun NavGraphBuilder.settingsFeatureGraph(
     navController: NavHostController,
-    appBarConfigure: (AppBarState) -> Unit
+    scaffoldOptions: ScaffoldOptions
 ) {
     navigation(
         route = SettingsFeature.featureRoute,
@@ -21,7 +21,7 @@ fun NavGraphBuilder.settingsFeatureGraph(
         ) {
             SettingsScreen.Content(
                 navController = navController,
-                appBarConfigure = appBarConfigure
+                scaffoldOptions = scaffoldOptions
             )
         }
     }

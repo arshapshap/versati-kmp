@@ -5,13 +5,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import core.navigation.features.ImageParsingFeature
-import core.navigation.state.AppBarState
 import feature.imageparsing.presentation.history.ParsingHistoryScreen
 import feature.imageparsing.presentation.parsing.ParsingScreen
+import main.ScaffoldOptions
 
 fun NavGraphBuilder.imageParsingFeatureGraph(
     navController: NavHostController,
-    appBarConfigure: (AppBarState) -> Unit
+    scaffoldOptions: ScaffoldOptions
 ) {
     navigation(
         route = ImageParsingFeature.featureRoute,
@@ -21,12 +21,10 @@ fun NavGraphBuilder.imageParsingFeatureGraph(
             route = ImageParsingFeature.Parsing.route,
             arguments = ImageParsingFeature.Parsing.arguments
         ) {
-//            BackHandler { }
-
             ParsingScreen.Content(
                 navController = navController,
                 id = it.arguments?.getLong(ImageParsingFeature.Parsing.idArgument),
-                appBarConfigure = appBarConfigure
+                scaffoldOptions = scaffoldOptions
             )
         }
 
@@ -35,7 +33,7 @@ fun NavGraphBuilder.imageParsingFeatureGraph(
         ) {
             ParsingHistoryScreen.Content(
                 navController = navController,
-                appBarConfigure = appBarConfigure
+                scaffoldOptions = scaffoldOptions
             )
         }
     }

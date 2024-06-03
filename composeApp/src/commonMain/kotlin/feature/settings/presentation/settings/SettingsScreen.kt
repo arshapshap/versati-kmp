@@ -12,6 +12,7 @@ import core.presentation_utils.collectSideEffect
 import core.presentation_utils.getViewModel
 import feature.settings.presentation.SettingsViewModel
 import feature.settings.presentation.contract.SettingsSideEffect
+import main.ScaffoldOptions
 import org.jetbrains.compose.resources.stringResource
 import versati.composeapp.generated.resources.Res
 import versati.composeapp.generated.resources.settings
@@ -21,7 +22,7 @@ internal object SettingsScreen {
     @Composable
     fun Content(
         navController: NavHostController,
-        appBarConfigure: (AppBarState) -> Unit
+        scaffoldOptions: ScaffoldOptions
     ) {
         val viewModel = getViewModel<SettingsViewModel>()
         val state by viewModel.collectAsState()
@@ -33,7 +34,7 @@ internal object SettingsScreen {
 
         val appBarState = getAppBarState()
         SideEffect {
-            appBarConfigure(appBarState)
+            scaffoldOptions.appBarConfigure(appBarState)
         }
         SettingsContent(
             state = state,

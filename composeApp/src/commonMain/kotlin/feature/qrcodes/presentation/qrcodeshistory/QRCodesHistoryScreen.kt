@@ -14,6 +14,7 @@ import core.presentation_utils.collectAsState
 import core.presentation_utils.collectSideEffect
 import core.presentation_utils.getViewModel
 import feature.qrcodes.presentation.qrcodeshistory.contract.QRCodesHistorySideEffect
+import main.ScaffoldOptions
 import org.jetbrains.compose.resources.stringResource
 import versati.composeapp.generated.resources.Res
 import versati.composeapp.generated.resources.clear_history
@@ -25,7 +26,7 @@ internal object QRCodesHistoryScreen {
     @Composable
     fun Content(
         navController: NavHostController,
-        appBarConfigure: (AppBarState) -> Unit
+        scaffoldOptions: ScaffoldOptions
     ) {
         val viewModel = getViewModel<QRCodesHistoryViewModel>()
         val state by viewModel.collectAsState()
@@ -42,7 +43,7 @@ internal object QRCodesHistoryScreen {
             onClearClick = viewModel::clearHistoryUnconfirmed
         )
         SideEffect {
-            appBarConfigure(appBarState)
+            scaffoldOptions.appBarConfigure(appBarState)
         }
         QRCodesHistoryContent(state = state, viewModel = viewModel)
     }

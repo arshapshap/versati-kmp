@@ -11,13 +11,14 @@ import core.presentation_utils.collectAsState
 import core.presentation_utils.collectSideEffect
 import core.presentation_utils.getViewModel
 import feature.auth.presentation.register.contract.RegisterSideEffect
+import main.ScaffoldOptions
 
 internal object RegisterScreen {
 
     @Composable
     fun Content(
         navController: NavHostController,
-        appBarConfigure: (AppBarState) -> Unit
+        scaffoldOptions: ScaffoldOptions
     ) {
         val viewModel = getViewModel<RegisterViewModel>()
         val state by viewModel.collectAsState()
@@ -33,7 +34,7 @@ internal object RegisterScreen {
         }
 
         SideEffect {
-            appBarConfigure(getAppBarState())
+            scaffoldOptions.appBarConfigure(getAppBarState())
         }
         RegisterContent(
             state = state,

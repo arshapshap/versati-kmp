@@ -11,13 +11,14 @@ import core.presentation_utils.collectAsState
 import core.presentation_utils.collectSideEffect
 import core.presentation_utils.getViewModel
 import feature.auth.presentation.signin.contract.SignInSideEffect
+import main.ScaffoldOptions
 
 internal object SignInScreen {
 
     @Composable
     fun Content(
         navController: NavHostController,
-        appBarConfigure: (AppBarState) -> Unit
+        scaffoldOptions: ScaffoldOptions
     ) {
         val viewModel = getViewModel<SignInViewModel>()
         val state by viewModel.collectAsState()
@@ -33,7 +34,7 @@ internal object SignInScreen {
         }
 
         SideEffect {
-            appBarConfigure(getAppBarState())
+            scaffoldOptions.appBarConfigure(getAppBarState())
         }
         SignInContent(
             state = state,

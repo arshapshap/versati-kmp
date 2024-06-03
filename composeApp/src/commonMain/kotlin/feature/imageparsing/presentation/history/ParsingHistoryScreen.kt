@@ -14,6 +14,7 @@ import core.presentation_utils.collectAsState
 import core.presentation_utils.collectSideEffect
 import core.presentation_utils.getViewModel
 import feature.imageparsing.presentation.history.contract.ParsingHistorySideEffect
+import main.ScaffoldOptions
 import org.jetbrains.compose.resources.stringResource
 import versati.composeapp.generated.resources.Res
 import versati.composeapp.generated.resources.clear_history
@@ -24,7 +25,7 @@ internal object ParsingHistoryScreen {
     @Composable
     fun Content(
         navController: NavHostController,
-        appBarConfigure: (AppBarState) -> Unit
+        scaffoldOptions: ScaffoldOptions
     ) {
         val viewModel = getViewModel<ParsingHistoryViewModel>()
         val state by viewModel.collectAsState()
@@ -41,7 +42,7 @@ internal object ParsingHistoryScreen {
             onClearClick = viewModel::clearHistoryUnconfirmed
         )
         SideEffect {
-            appBarConfigure(appBarState)
+            scaffoldOptions.appBarConfigure(appBarState)
         }
         ParsingHistoryContent(
             state = state,

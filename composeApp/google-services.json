@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "998259713578",
+    "firebase_url": "https://arshapshap-versati-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "arshapshap-versati",
+    "storage_bucket": "arshapshap-versati.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998259713578:android:e3c46fabbfa94cd3998553",
+        "android_client_info": {
+          "package_name": "com.arshapshap.versati"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyC6VwAQzfPAp88ks8NG75hZzJjvkSKc4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998259713578:android:bb1c903a6258c450998553",
+        "android_client_info": {
+          "package_name": "com.arshapshap.versati.kmp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyC6VwAQzfPAp88ks8NG75hZzJjvkSKc4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
